@@ -16,13 +16,40 @@ This tool reads mbox files from a specified directory, extracts email metadata a
 - Exports emails in JSONL format for easy data processing
 - Batches output into files of 1000 emails each
 - Automatically deletes processed mbox files
+- Load processed emails into MongoDB
 
 ## Requirements
 
 - Python 3.x
-- Standard library modules (no external dependencies required)
+- For MongoDB loading: `pymongo` and `python-dotenv` (see requirements.txt)
+
+## Installation
+
+### 1. Set Up Virtual Environment (Recommended)
+
+**Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Linux/macOS:**
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### 2. Install Dependencies
+
+For MongoDB functionality, install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
+
+### Processing Mailbox Files
 
 1. Place your mbox files in the configured directory (default: `C:/Users/john/mbox/`)
 2. Run the script:
@@ -30,6 +57,25 @@ This tool reads mbox files from a specified directory, extracts email metadata a
    python import_mailbox.py
    ```
 3. Processed emails will be saved to `processed_mail/<mbox_name>/` directory
+
+### Loading to MongoDB
+
+1. Create a `.env` file with your MongoDB connection string (see `.env.example`):
+   ```
+   MONGODB_URI=mongodb://localhost:27017/
+   ```
+
+2. Run the MongoDB loader script:
+   ```bash
+   python load_to_mongodb.py
+   ```
+
+This will:
+- Connect to MongoDB using the connection string from `.env`
+- Load all JSONL files from the `processed_mail` directory
+- Insert documents into the `mbox` database and `emails` collection
+- Skip duplicate documents (based on UUID)
+- Display progress and summary statistics
 
 ## Output Format
 
