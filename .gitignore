@@ -66,6 +66,7 @@ venv.bak/
 processed_mail/
 *.mbox
 *.jsonl
+mongodb_backup/
 
 # Logs
 *.log
