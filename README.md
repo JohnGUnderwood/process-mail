@@ -124,6 +124,17 @@ processed_mail/
 - Email bodies are extracted from `text/plain` MIME parts only
 - Character encoding errors are handled gracefully with replacement characters
 
+## Email Search Web Application
+
+A complete web frontend for searching your processed emails is available in the `app/` directory. It features:
+
+- **Vector Search**: Semantic search using MongoDB Atlas auto-embeddings
+- **Keyword Search**: Full-text search using MongoDB Atlas Search
+- **Thread View**: View email conversations grouped by subject
+- **Advanced Filtering**: Filter by date range and email tags
+
+See `app/README.md` for setup and usage instructions.
+
 ## License
 
 MIT
